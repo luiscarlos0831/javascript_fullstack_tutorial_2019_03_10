@@ -45,9 +45,18 @@ class UI {
     document.getElementById('book-form').reset();
   }
 
-  renderMessage(message, colormessage, secondsToRemove) {
+  renderMessage(message, colorMessage, secondsToRemove) {
     const div = document.createElement('div');
-    div.className='alert alert-danger '
+    div.className = `alert alert-${colorMessage} message`;
+    div.appendChild(document.createTextNode(message));
+
+    const container = document.querySelector('.col-md-4');
+    const bookForm = document.querySelector('#book-form');
+
+    container.insertBefore(div, bookForm);
+    setTimeout(() => {
+      document.querySelector('.message').remove();
+    }, secondsToRemove);
   }
 
   async deleteBook(bookId) {
@@ -58,6 +67,3 @@ class UI {
 }
 
 export default UI;
-
-// https://www.youtube.com/watch?v=wS2xCdbsnyg
-// 12:59
